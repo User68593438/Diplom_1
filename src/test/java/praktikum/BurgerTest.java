@@ -19,7 +19,7 @@ public class BurgerTest {
     private Bun bun;
 
     @Mock
-    private Ingredient ingredientSous;
+    private Ingredient ingredientSauce;
 
     @Mock
     private Ingredient ingredientFilling;
@@ -40,8 +40,8 @@ public class BurgerTest {
     // Тест добавить ингредиент в бургер
     @Test
     public void addIngredientTest() {
-        burger.addIngredient(ingredientSous); // Добавили ингредиент
-        Assert.assertEquals("Ожидаем другой ингредиент", List.of(ingredientSous), burger.ingredients); // Проверяем что ингредиент добавился
+        burger.addIngredient(ingredientSauce); // Добавили ингредиент
+        Assert.assertEquals("Ожидаем другой ингредиент", List.of(ingredientSauce), burger.ingredients); // Проверяем что ингредиент добавился
     }
 
     // Тест удалить ингредиент из бургера
@@ -50,6 +50,15 @@ public class BurgerTest {
         burger.addIngredient(ingredientFilling); // Добавили ингредиент
         burger.removeIngredient(0); // Удалили ингредиент
         Assert.assertTrue("Ингредиент не удалили", burger.ingredients.isEmpty()); // Проверяем что ингредиент удалился
+    }
+
+    // Тест переместить ингредиенты в бургере
+    @Test
+    public void moveIngredientTest() {
+        burger.addIngredient(ingredientFilling); //
+        burger.addIngredient(ingredientSauce);
+        burger.moveIngredient(1,0);
+        Assert.assertEquals("Первым ингредиентом должен стать соус", ingredientSauce, burger.ingredients.get(0));
     }
 
 }
